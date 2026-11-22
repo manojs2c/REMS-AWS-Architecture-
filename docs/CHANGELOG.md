@@ -1,0 +1,39 @@
+# Changelog
+
+Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Dates are UTC.
+
+## [Unreleased] · branch `docs/rems-implementation-guide` · 2026-11-22
+
+### Added: infrastructure implementation (imported into the repository in this branch)
+
+- `terraform/`: landing zone, account bootstrap, shared services (ECR), 17 modules, 4 environments (dev, staging, prod, prod-dr), CI/CD stacks (`terraform/cicd/github`, `terraform/cicd/argocd`).
+- `kubernetes/`: base manifests, 4 overlays, platform add-on values.
+- `helm/`: `rems-common` library chart and 7 service charts with per-environment values.
+- `cicd/`: ArgoCD install/projects/bootstrap/apps, Argo Rollouts analysis templates, `rems-microconfig` repository template.
+- `.github/`: workflows `app-build`, `terraform`, `k8s-validate`, `security-scan`, `load-test`. CODEOWNERS, Dependabot.
+- `security/`: SCPs, permission boundaries, Kyverno policies, OPA policies + tests, threat model, audit logging, secrets rotation.
+- `monitoring/`: kube-prometheus-stack, Loki, Tempo, OTel Collector, VictoriaMetrics values. Rules, dashboards, SLOs.
+- `database/`: SQL (roles, grants, RLS, pgvector) and operational scripts. Redis design.
+- `ai-infrastructure/`: LLM gateway, RAG and MCP design and configuration.
+- `load-testing/`: k6 scenarios, k6-operator TestRun, AWS FIS templates, chaos driver.
+- `scripts/`: validation, bootstrap, smoke test, cost model, offline Terraform/Helm/Mermaid checkers.
+- `architecture/`, `documentation/`, `runbooks/`: design documents, requirements traceability, assumptions, deployment guide, capacity and cost models, roadmap, 12 runbooks.
+- Lint/scan configuration: `.checkov.yaml`, `.tflint.hcl`, `.yamllint.yaml`, `.gitignore`.
+
+### Added: documentation
+
+- `docs/`: step-by-step implementation guide (14 sections, 82 topic pages + index, status and changelog (85 files)), including 10 architecture views as Mermaid diagrams.
+- `docs/IMPLEMENTATION-STATUS.md`: completed / in progress / pending / blocked / not-yet-validated items with repository paths.
+- `docs/CHANGELOG.md`: this file.
+
+### Changed
+
+- `README.md`: replaced the one-line placeholder title with the full project README (introduction, requirements, stack, architecture, structure, prerequisites, deployment, access, CI/CD, monitoring, security, HA/DR, troubleshooting, documentation index). The original title line is kept as the heading.
+
+### Known gaps
+
+See [IMPLEMENTATION-STATUS.md → Pending](IMPLEMENTATION-STATUS.md#-pending-gaps-and-follow-ups-found-while-documenting).
+
+## [0.0.0] · Initial commit
+
+- Repository created with `README.md` (`# REMS-AWS-Architecture-`).
